@@ -56,18 +56,4 @@ public class User implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
-
-//    public String getRoles() {
-//        StringBuilder a = new StringBuilder();
-//        var ref = new Object() {
-//            String delimiter = "";
-//        };
-//        roles.forEach((role) -> {
-//            a.append(ref.delimiter);
-//            a.append(role.toString());
-//            ref.delimiter = " ";
-//        }
-//        );
-//        return a.toString();
-//    }
 }
