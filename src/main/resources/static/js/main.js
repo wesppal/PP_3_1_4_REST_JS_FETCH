@@ -2,7 +2,6 @@ const url = 'http://localhost:8080/api/admin'
 const urlRoles = 'http://localhost:8080/api/admin/roles'
 const urlCurrentUser = 'http://localhost:8080/api/user'
 
-
 const usersTabRows = document.getElementById('usersTabRow')
 const currentUserRow = document.getElementById('currentUserRow')
 
