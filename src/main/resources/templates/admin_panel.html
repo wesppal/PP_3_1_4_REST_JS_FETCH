@@ -70,7 +70,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#tab2" data-toggle="tab">
+                                <a id="newUserSwitch" class="nav-link" href="#tab2" data-toggle="tab">
                                     New user
                                 </a>
                             </li>
@@ -193,58 +193,59 @@
                 </div>
                 <!-- Конец вкладки с id="v-pills-admin" -->
 
-                <!--Макет дефолтного модального окна -->
-                <div class="modal" id="defaultModal" tabindex="-1"
-                     role="dialog" aria-labelledby="defaultModalLabel" aria-hidden="true">
-                    <form id="defaultModalForm">
+                <!--Макет дефолтного модального окна  EDIT -->
+                <div class="modal" id="modalEdit" tabindex="-1"
+                     role="dialog" aria-labelledby="modalEditLabel" aria-hidden="true">
+                    <form id="modalEditForm">
                         <div class="modal-dialog modal-dialog-centered" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="defaultModalLabel">Edit user</h5>
+                                    <h5 class="modal-title" id="modalEditLabel">Edit user</h5>
                                     <button type="button" class="close" data-dismiss="modal"
-                                            aria-label="Close">
+                                            aria-label="Close" onclick="clearSelectFormEdit()"
+                                            id="exitModalEdit">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
-                                <!-- Тело модального окна от модальной кнопки edit -->
+                                <!-- Тело модального окна от модальной кнопки delete -->
                                 <div class="modal-body">
                                     <div class="text-center">
                                         <div class="form-group mx-auto" style="width:200px">
                                             <label><b>ID</b></label>
                                             <input type="number" class="form-control"
-                                                   id="modalDefaultId" disabled>
+                                                   id="modalEditId" disabled>
                                         </div>
 
                                         <div class="form-group mx-auto" style="width:200px">
                                             <label><b>First name</b></label>
                                             <input type="text" class="form-control"
-                                                   name="firstName" id="modalDefaultFirstName">
+                                                   name="firstName" id="modalEditFirstName">
                                         </div>
                                         <div class="form-group mx-auto" style="width:200px">
                                             <label><b>Last name</b></label>
                                             <input type="text" class="form-control"
-                                                   name="lastName" id="modalDefaultLastName">
+                                                   name="lastName" id="modalEditLastName">
                                         </div>
                                         <div class="form-group mx-auto" style="width:200px">
                                             <label><b>Age</b></label>
                                             <input type="number" min="1" max="150"
                                                    step="1" class="form-control"
-                                                   name="age" id="modalDefaultAge">
+                                                   name="age" id="modalEditAge">
                                         </div>
                                         <div class="form-group mx-auto" style="width:200px">
                                             <label><b>Email</b></label>
                                             <input type="text" class="form-control"
-                                                   name="username" id="modalDefaultUsername">
+                                                   name="username" id="modalEditUsername">
                                         </div>
                                         <div class="form-group mx-auto" style="width:200px">
                                             <label><b>Password</b></label>
                                             <input type="password" class="form-control"
-                                                   name="password" id="modalDefaultPassword">
+                                                   name="password" id="modalEditPassword">
                                         </div>
-                                        <div class="form-group mx-auto" style="width:200px">
+                                        <div class="form-group mx-auto editDivSel" style="width:200px">
                                             <label for="modalEditRoles"><b>Role</b></label>
                                             <select multiple class="form-control form-control-sm"
-                                                    id="modalDefaultRoles"
+                                                    id="modalEditRoles"
                                                     name="roles" size="2">
                                             </select>
                                         </div>
@@ -253,8 +254,77 @@
 
                                 </div>
                                 <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="clearSelectFormEdit()">Close</button>
+                                    <button type="submit" class="btn btn-primary" id="modalEditBtnSuccess">Edit</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <!--Конец макета дефолтного модального окна -->
+
+                <!--Макет дефолтного модального окна  DELETE -->
+                <div class="modal" id="modalDelete" tabindex="-1"
+                     role="dialog" aria-labelledby="modalDeleteLabel" aria-hidden="true">
+                    <form id="modalDeleteForm">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="modalDeleteLabel">Delete user</h5>
+                                    <button type="button" class="close" data-dismiss="modal"
+                                            aria-label="Close" id="exitModalDelete">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <!-- Тело модального окна от модальной кнопки delete -->
+                                <div class="modal-body">
+                                    <div class="text-center">
+                                        <div class="form-group mx-auto" style="width:200px">
+                                            <label><b>ID</b></label>
+                                            <input type="number" class="form-control"
+                                                   id="modalDeleteId" disabled>
+                                        </div>
+
+                                        <div class="form-group mx-auto" style="width:200px">
+                                            <label><b>First name</b></label>
+                                            <input type="text" class="form-control"
+                                                   name="firstName" id="modalDeleteFirstName" disabled>
+                                        </div>
+                                        <div class="form-group mx-auto" style="width:200px">
+                                            <label><b>Last name</b></label>
+                                            <input type="text" class="form-control"
+                                                   name="lastName" id="modalDeleteLastName" disabled>
+                                        </div>
+                                        <div class="form-group mx-auto" style="width:200px">
+                                            <label><b>Age</b></label>
+                                            <input type="number" min="1" max="150"
+                                                   step="1" class="form-control"
+                                                   name="age" id="modalDeleteAge" disabled>
+                                        </div>
+                                        <div class="form-group mx-auto" style="width:200px">
+                                            <label><b>Email</b></label>
+                                            <input type="text" class="form-control"
+                                                   name="username" id="modalDeleteUsername" disabled>
+                                        </div>
+                                        <div class="form-group mx-auto" style="width:200px">
+                                            <label><b>Password</b></label>
+                                            <input type="password" class="form-control"
+                                                   name="password" id="modalDeletePassword" disabled>
+                                        </div>
+                                        <div class="form-group mx-auto" style="width:200px">
+                                            <label for="modalEditRoles"><b>Role</b></label>
+                                            <select multiple class="form-control form-control-sm"
+                                                    id="modalDeleteRoles"
+                                                    name="roles" size="2" disabled>
+                                            </select>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                                <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                    <button type="submit" id="modalDefaultBtnSuccess">Default</button>
+                                    <button type="submit" class="btn btn-danger" id="modalDeleteBtnSuccess">Delete</button>
                                 </div>
                             </div>
                         </div>

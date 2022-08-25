@@ -9,7 +9,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.kata.spring.boot_security.demo.dao.UserDao;
-import ru.kata.spring.boot_security.demo.dto.UserDTO;
 import ru.kata.spring.boot_security.demo.entities.User;
 
 import java.util.List;
@@ -29,15 +28,8 @@ public class UserService implements UserDetailsService {
                 .orElseThrow(() -> new UsernameNotFoundException(String.format("Username %s not found", username)));
     }
     public void saveUser(User user) {
-        BCryptPasswordEncoder passwordEndcoder = new BCryptPasswordEncoder(12);
-//        User user = new User();
-//        user.setFirstName(userDTO.getFirstName());
-//        user.setLastName(userDTO.getLastName());
-//        user.setAge(userDTO.getAge());
-//        user.setUsername(userDTO.getUsername());
-//        user.setPassword(passwordEndcoder.encode(userDTO.getPassword()));
-//        user.setRoles(userDTO.getRoles());
-        user.setPassword(passwordEndcoder.encode(user.getPassword()));
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder(12);
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         userDao.save(user);
     }
 
