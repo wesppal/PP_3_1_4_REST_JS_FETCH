@@ -17,11 +17,6 @@ public class UserController {
         this.userService = userService;
     }
 
-    @GetMapping("/user")
-    public String pageForUser (Model model, Principal principal) {
-        model.addAttribute("user", userService.findByUsername(principal.getName()));
-        return "user_panel";
-    }
 
     @GetMapping("/login")
     public String loginUser () {

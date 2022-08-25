@@ -1,13 +1,14 @@
+/*
 // Заполнение таблицы всеми юзерами из запроса
 // Method: get
 
-const usersTabRows = document.querySelector('#usersTabRow')
-let outputUser = ``
-const url = 'http://localhost:8080/api/admin'
+    //const usersTabRows = document.querySelector('#usersTabRow')
+    //let outputUser = ``
+    //const url = 'http://localhost:8080/api/admin'
 
-fetch(url)
-    .then(res => res.json())
-    .then(data => renderContentTab(data))
+    //fetch(url)
+    //    .then(res => res.json())
+    //   .then(data => renderContentTab(data))
 
 // renderAllUsers()
 //
@@ -115,14 +116,28 @@ createNewUserForm.addEventListener('submit', (e) => {
     })
         .then(r => r.json())
         .then(data => {
-            const dataArr = []
-            dataArr.push(data)
-            renderContentTab(dataArr)
-            // console.log(dataArr)
+            renderContentTab(data)
+            // const dataArr = []
+            // dataArr.push(data)
+            // renderContentTab(dataArr)
+            console.log(data)
         })
+        .then(() => document.getElementById("userTableSwitch").click())
         // .then(() => location.reload())
 })
 
+// function loadUsers() {
+//     fetch(url)
+//         .then(res => res.json())
+//         .then(data => {
+//             console.log(data)
+//             data.forEach(user => {
+//                 if (!document.getElementById('editUserId' + user.id)) {
+//                     whiteRow(user)
+//                 }
+//             })
+//         })
+// }
 
 
-
+*/

@@ -5,7 +5,6 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
-import java.util.Collection;
 import java.util.List;
 
 @Getter
@@ -58,9 +57,17 @@ public class User implements UserDetails {
         return true;
     }
 
-    public String getRoles() {
-        StringBuilder a = new StringBuilder();
-        roles.stream().forEach(role -> a.append(role.getRole().substring(5) + " "));
-        return a.toString();
-    }
+//    public String getRoles() {
+//        StringBuilder a = new StringBuilder();
+//        var ref = new Object() {
+//            String delimiter = "";
+//        };
+//        roles.forEach((role) -> {
+//            a.append(ref.delimiter);
+//            a.append(role.toString());
+//            ref.delimiter = " ";
+//        }
+//        );
+//        return a.toString();
+//    }
 }

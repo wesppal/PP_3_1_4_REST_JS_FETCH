@@ -4,13 +4,14 @@ package ru.kata.spring.boot_security.demo.controllers;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ru.kata.spring.boot_security.demo.entities.Role;
 import ru.kata.spring.boot_security.demo.entities.User;
 import ru.kata.spring.boot_security.demo.service.RoleService;
 import ru.kata.spring.boot_security.demo.service.UserService;
 
+import java.security.Principal;
 import java.util.List;
 
 @RestController
@@ -38,17 +39,10 @@ public class AdminRestController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public User addUser(@RequestBody User user) {
+    public List<User> addUser(@RequestBody User user) {
         userService.saveUser(user);
-        user = userService.findByUsername(user.getUsername());
-        return user;
+        return userService.getAllUsers();
     }
-//    @PostMapping
-//    @ResponseStatus(HttpStatus.CREATED)
-//    public List<User> addUser(@RequestBody User user) {
-//        userService.saveUser(user);
-//        return userService.getAllUsers();
-//    }
 
     @PatchMapping("/{id}")
     public List<User> update(@PathVariable long id, @RequestBody User user) {
